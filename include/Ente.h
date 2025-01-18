@@ -4,26 +4,20 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Window.hpp>
-#include <string>
 
 class Ente {
 protected:
   int id;
   static Gerenciadores::Gerenciador_Grafico *pGG;
-  static int cont;
   sf::RenderTarget *pAlvo;
-  sf::Texture *pTexture;
-  sf::Sprite *pSprite;
 
 public:
-  Ente();
+  Ente(int id);
   virtual ~Ente();
 
   static void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico *ppGG);
-  bool setTexture(const std::string &path);
-  void atualizaSprite(sf::Texture *pTexture);
-  sf::Sprite getSprite();
   void setTarget();
-  void desenhar();
+  const int getId() const;
+  virtual void desenhar() = 0;
   virtual void executar() = 0;
 };
